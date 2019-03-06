@@ -3,14 +3,15 @@
   <div class="user-container" v-if="user.id">
     <div class="write-container" @click="goPath('/editor/drafts/new')">
       <icon-svg icon-class="write"></icon-svg>
-      写文章
+      <span class="write-list">写文章</span>
     </div>
     <el-dropdown menu-align="start"
       class="avatar-container"
       trigger="click"
       @visible-change="visibleChange">
       <div class="avatar-wrapper" :class="{'active' : isShowDrop}">
-          <span>{{ user.name }}</span>
+          <span class="wrapper-name">{{ user.name }}</span>
+          <span class="wrapper-icon">▼</span>
       </div>
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
           <el-dropdown-item @click.native="goPath('/mySpace')">
@@ -32,10 +33,12 @@
     </el-dropdown>
   </div>
   <!-- login bar (if not logined) -->
-  <div v-else class="login-container">
-    <span><router-link to="/login/">登录</router-link></span>
-    <span><router-link to="/signup/">注册</router-link></span>
-  </div>
+  <ul v-else class="login-container">
+    <li class="login-list"><router-link to="/login/">登录</router-link></li>
+    <!-- insert separator -->
+    <li class="login-separator">|</li>
+    <li class="login-list"><router-link to="/signup/">注册</router-link></li>
+  </ul>
 </div>
 </template>
 
@@ -72,41 +75,65 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.login-container,
-.avatar-container {
-  font-size: 18px;
-  margin-left: 30px;
-}
 .login-container {
   color: #ffffff;
-  span {
-    padding: 0 14px;
-    &:not(:first-child) {
-      border-left: 1px solid #fff;
+  float: right;
+  margin-left: 50px;
+  .login-list {
+    font-size: 16px;
+    float: left;
+    position: relative;
+    cursor: pointer;
+    padding: 0px 10px;
+    width: 55px;
+    &:hover {
+    font-weight: bold;
     }
+  }
+  .login-separator {
+    float: left;
+    position: relative;
+    padding: 0px 5px 0px 2px;
   }
 }
 .user-container {
-  margin-left: 30px;
+  margin-left: 40px;
 }
 .write-container {
   display: inline-block;
   cursor: pointer;
   color: #fff;
+  position: relative;
+  cursor: pointer;
+  padding: 0px 1px;
+  width: 75px;
+  .write-list {
+    font-size: 16px;
+    &:hover {
+      font-weight: bold;
+    }
+  }
 }
 .avatar-container {
+  text-align: center;
+  font-size: 18px;
   display: inline-block;
   .avatar-wrapper {
-    position: relative;
+    width: 100px;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
     color: #fff;
-    .avatar-icon {
-      margin-right: 6px;
+    .wrapper-icon {
+      font-size: 13px;
     }
-    > span {
-      padding: 0 20px;
+    .wrapper-name {
+      font-size: 16px;
+      max-width: 60px;
       display: inline-block;
+      padding: 1px;
+      &:hover {
+      font-weight: bold;
+      }
     }
   }
   .avatar-wrapper.active {
@@ -119,6 +146,7 @@ export default {
 
 // dropdown style
 .user-dropdown {
+  width: 100px;
   margin-top: 0;
   background-color: #5677fc;
   padding-top: 0;
@@ -129,13 +157,17 @@ export default {
     display: none;
   }
   /deep/ .el-dropdown-menu__item {
-    padding: 10px 24px;
+    padding: 10px 15px;
     transition: all 0.3s ease-in-out;
     line-height: normal;
     font-size: 13px;
     color: #ffffff;
+    text-align: center;
     &:hover {
       background-color: #2953fc;
+    }
+    &:active {
+      font-weight: bold;
     }
   }
 }

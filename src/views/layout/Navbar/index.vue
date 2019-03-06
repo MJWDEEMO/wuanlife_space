@@ -72,15 +72,16 @@ export default {
   background-color: $wl-blue;
   .navbar-container {
     display: flex;
-    max-width: 1200px;
-    justify-content: space-around;
+    height: $nav-height;
+    width: 1000px;
     margin: auto;
     .logo {
+      float: left;
       cursor: pointer;
-      margin-right: 38px;
+      margin-right: 40px;
       font-size: 30px;
       color: #ffffff;
-      text-align: left;
+      text-align: center
     }
     .notif-container {
       margin-left: auto;
