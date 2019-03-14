@@ -3,7 +3,7 @@
   <div class="user-container" v-if="user.id">
     <div class="write-container" @click="goPath('/editor/drafts/new')">
       <icon-svg icon-class="write"></icon-svg>
-      <span class="write-list">写文章</span>
+      <span class="container-name">写文章</span>
     </div>
     <el-dropdown menu-align="start"
       class="avatar-container"
@@ -34,10 +34,10 @@
   </div>
   <!-- login bar (if not logined) -->
   <ul v-else class="login-container">
-    <li class="login-list"><router-link to="/login/">登录</router-link></li>
+    <li class="login-name"><router-link to="/login/">登录</router-link></li>
     <!-- insert separator -->
     <li class="login-separator">|</li>
-    <li class="login-list"><router-link to="/signup/">注册</router-link></li>
+    <li class="login-name"><router-link to="/signup/">注册</router-link></li>
   </ul>
 </div>
 </template>
@@ -79,7 +79,7 @@ export default {
   color: #ffffff;
   float: right;
   margin-left: 50px;
-  .login-list {
+  .login-name {
     font-size: 16px;
     float: left;
     position: relative;
@@ -107,7 +107,7 @@ export default {
   cursor: pointer;
   padding: 0px 1px;
   width: 75px;
-  .write-list {
+  .container-name {
     font-size: 16px;
     &:hover {
       font-weight: bold;
